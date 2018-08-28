@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.views.fragments.EventoPresencFragment">
+
+    <ProgressBar
+        android:id="@+id/progressbar"
+        android:layout_marginTop="24dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ExpandableListView
+        android:id="@+id/event_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:layout_alignParentTop="true"
+        android:childDivider="@color/transparente"
+        android:divider="@color/transparente"
+        android:focusable="false"
+        android:layout_above="@id/espec_titulo"
+        android:groupIndicator="@null" />
+
+    <TextView
+        android:id="@+id/espec_titulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/espec_descr"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="18dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginStart="12dp"
+        android:background="@drawable/bg_mayo"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+    <com.bluejamesbond.text.DocumentView
+        android:id="@+id/espec_descr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginStart="12dp"
+        app:documentView_antialias="true"
+        android:layout_above="@id/bt_especialidad"
+        app:documentView_textAlignment="justified"
+        app:documentView_textSize="12sp" />
+
+    <TextView
+        android:id="@+id/event_no_disponible"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="@string/no_disponible"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/bt_especialidad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/bg_julio"
+        android:drawableEnd="@drawable/ic_internet_dark"
+        android:minHeight="0dp"
+        android:padding="4dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/ver_mas"
+        android:textAllCaps="false"
+        android:textColor="@color/white" />
+
+
+
+
+</RelativeLayout>

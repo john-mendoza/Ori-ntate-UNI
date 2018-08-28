@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~
+  -->
+
+<resources>
+    <color name="colorPrimary">#c70039</color>
+    <color name="colorPrimaryDark">#c70039</color>
+    <color name="colorAccent">#c70039</color>
+    <color name="colorUni">#9c223e</color>
+    <color name="colorUniAlpha">#e09c223e</color>
+    <color name="colorDark">#c70039</color>
+    <color name="white">#ffffff</color>
+    <color name="transparente">#00000000</color>
+    <color name="mayo">#0060ac</color>
+    <color name="junio">#4b0047</color>
+    <color name="julio">#c70039</color>
+    <color name="eventos">#0288d1</color>
+    <color name="eventos2">#03a9f4</color>
+    <color name="eventos3">#bee239</color>
+    <color name="facultad">#008CFF</color>
+    <color name="otro">#FF0048</color>
+    <color name="puerta">#00FF2F</color>
+</resources>

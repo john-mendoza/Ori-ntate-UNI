@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Optional JavaScript -->
+
+    <title>Orientate UNI - Eventos</title>
+    <link rel="icon" href="icons/favicon.ico" />
+
+    <!-- Datepicker -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
+    <!-- Selectpicker -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+
+    <!-- Firestore -->
+
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-firestore.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="css/app.css" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">Oriéntate UNI</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+          <ul class="nav navbar-nav">
+            <li id="eventosLink"><a href="#">Eventos<span class="sr-only">(current)</span></a></li>
+            <li id="usuariosLink"><a href="usuarios.html">Usuarios<span class="sr-only">(current)</span></a></li>
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+            <li id="loginLink"><a href="login.html">Iniciar Sesión</a></li>
+            <li id="emailLogged"><a id="emailaddress" href="#"></a></li>
+            <li id="logoutLink"><a href="#">Cerrar Sesión</a></li>
+          </ul>
+
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container -->
+    </div>
+
+    <!-- content -->
+    <div class="container-fluid" id="eventos">
+      <h1>Eventos</h1>
+      <button type="button" class="btn btn-primary" onclick="nuevo()">Nuevo evento</button>
+      <div class="spacer"></div>
+      <div class="table-responsive">
+        <table class="table table-condensed table-hover" id="tabla-eventos">
+          <thead>
+            <tr>
+              <th scope="col">Título</th>
+              <th scope="col">Descripción</th>
+              <th scope="col" class="col-md-1">Facultades</th>
+              <th scope="col">Lugar</th>
+              <th scope="col">Fecha</th>
+              <th scope="col">Horario</th>
+              <th scope="col">Enlace</th>
+              <th scope="col">Modificar</th>
+              <th scope="col">Eliminar</th>
+            </tr>
+          </thead>
+          <tbody id="tabla">
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+    <div id="myModal" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 id="myModalTitle"class="modal-title">Nuevo Evento</h4>
+          </div>
+          <div class="modal-body">
+            <form id="myForm">
+              <div class="form-group">
+                <label for="titulo">Título</label>
+                <input type="text" id="titulo" placeholder="Título" class="form-control" required/>
+              </div>
+              <div class="form-group">
+                <label for="descripcion">Descripción</label>
+                <textarea id="descripcion" placeholder="Descripción" rows="3" class="form-control" required></textarea>
+              </div>
+              <div class="form-group">
+                <label for="facultades">Facultades</label>
+                <select id="facultades" name="facultades[]" class="form-control" multiple required>
+                  <option value="FIM">FIM</option>
+                  <option value="FIQT">FIQT</option>
+                  <option value="FIP">FIP</option>
+                  <option value="FIA">FIA</option>
+                  <option value="FAUA">FAUA</option>
+                  <option value="FIC">FIC</option>
+                  <option value="FIGMM">FIGMM</option>
+                  <option value="FIEECS">FIEECS</option>
+                  <option value="FIEE">FIEE</option>
+                  <option value="FC">FC</option>
+                  <option value="FIIS">FIIS</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="lugar">Lugar</label>
+                <input type="text" id="lugar" placeholder="Lugar" class="form-control" required/>
+              </div>
+              <div class="form-group">
+                <label for="fecha">Fecha</label>
+                <div class="input-group date">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span><input type="text" id="fecha" placeholder="Fecha" class="form-control" width="276" readonly required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="horario">Horario</label>
+                <input type="text" id="horario" placeholder="Horario" class="form-control" required />
+              </div>
+              <div class="form-group">
+                <label for="enlace">Enlace</label>
+                <input type="url" id="enlace" placeholder="Enlace de inscripción" class="form-control" />
+              </div>
+            </form>
+          </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-primary" id="btnAceptar" form="myForm">Guardar</button>
+              </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="myModal2" class="modal fade">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4>Eliminando</h4>
+              </div>
+              <div class="modal-body">
+                  <p>Desea eliminar el evento:</p>
+                  <p class="text-warning" id="tituloEliminar"></p>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                  <button type="button" class="btn btn-danger" id="btnEliminar">Eliminar</button>
+              </div>
+          </div>
+      </div>
+  </div>
+
+    <script>
+      $('#facultades').selectpicker();
+
+      $('.input-group.date').datepicker({
+          format: 'dd/mm/yyyy',
+          todayHighlight: true,
+          autoclose: true,
+          clearBtn: true
+      });
+    </script>
+    <script src="js/eventos.js"></script>
+  </body>
+</html>

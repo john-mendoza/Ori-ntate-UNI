@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.views.activities.PresencialActivity">
+    <fragment
+        tools:layout="@layout/fragment_presencial"
+        android:id="@+id/frag_presencial"
+        android:layout_width="match_parent"
+        android:name="com.goucorporation.android.orientateuni.presentation.views.fragments.PresencialFragment"
+        android:layout_height="match_parent"/>
+</LinearLayout>

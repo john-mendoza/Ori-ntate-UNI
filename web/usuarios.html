@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Optional JavaScript -->
+
+    <title>Orientate UNI - Usuarios</title>
+    <link rel="icon" href="icons/favicon.ico" />
+
+    <!-- Firestore -->
+
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-firestore.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="css/app.css" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">Oriéntate UNI</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+          <ul class="nav navbar-nav">
+            <li id="eventosLink"><a href="eventos.html">Eventos<span class="sr-only">(current)</span></a></li>
+            <li id="usuariosLink"><a href="#">Usuarios<span class="sr-only">(current)</span></a></li>
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+            <li id="loginLink"><a href="login.html">Iniciar Sesión</a></li>
+            <li id="emailLogged"><a id="emailaddress" href="#"></a></li>
+            <li id="logoutLink"><a href="#">Cerrar Sesión</a></li>
+          </ul>
+
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container -->
+    </div>
+
+    <!-- content -->
+    <div class="container" id="usuariosCont">
+      <h1>Usuarios</h1>
+      <button type="button" class="btn btn-primary" onclick="nuevo()">Nuevo usuario</button>
+      <div class="spacer"></div>
+      <div class="table-responsive">
+        <table class="table table-condensed table-hover" id="tabla-eventos">
+          <thead>
+            <tr>
+              <th scope="col" class="col-md-6">Email</th>
+              <th scope="col" class="col-md-1">Rol</th>
+              <th scope="col" class="col-md-1">Editar Rol</th>
+              <th scope="col" class="col-md-1">Eliminar</th>
+            </tr>
+          </thead>
+          <tbody id="tabla">
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+    <div id="myModal" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 id="myModalTitle"class="modal-title">Nuevo usuario</h4>
+          </div>
+          <div class="modal-body">
+            <form id="myForm">
+              <div class="form-group">
+                <label for="emailtxt">Email</label>
+                <input type="email" id="emailtxt" placeholder="Email" class="form-control" required/>
+              </div>
+              <div class="form-group">
+                <label for="passtxt">Contraseña</label>
+                <input type="text" id="passtxt" placeholder="Contraseña" class="form-control" required/>
+              </div>
+            </form>
+          </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-primary" id="btnAceptar" form="myForm">Agregar</button>
+              </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="myModal2" class="modal fade">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4>Eliminando</h4>
+              </div>
+              <div class="modal-body">
+                  <p>Desea eliminar el usuario:</p>
+                  <p class="text-warning" id="emailEliminar"></p>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                  <button type="button" class="btn btn-danger" id="btnEliminar">Eliminar</button>
+              </div>
+          </div>
+      </div>
+    </div>
+
+    <div id="myModal3" class="modal fade">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4>Editando Rol</h4>
+              </div>
+              <div class="modal-body">
+                  <p>Editando rol a:</p>
+                  <p id="emailEditar"></p>
+                  <div class="checkbox">
+                    <label><input type="checkbox" id="checkAdmin" /> Admin</label>
+                  </div>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                  <button type="button" class="btn btn-primary" id="btnEditarRol">Modificar Rol</button>
+              </div>
+          </div>
+      </div>
+    </div>
+
+
+    <script src="js/usuarios.js"></script>
+  </body>
+</html>

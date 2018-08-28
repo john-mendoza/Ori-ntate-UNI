@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "520828332913",
+    "firebase_url": "https://orientate-uni-e277e.firebaseio.com",
+    "project_id": "orientate-uni-e277e",
+    "storage_bucket": "orientate-uni-e277e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:520828332913:android:239447499d01da54",
+        "android_client_info": {
+          "package_name": "com.goucorporation.android.orientateuni"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "520828332913-359q4277ll50eors3krpibj91s0q2p0g.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "520828332913-359q4277ll50eors3krpibj91s0q2p0g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLpRIrcWilNmku4f9n47ABr-zXnPjI-MI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
